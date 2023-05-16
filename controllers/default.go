@@ -116,7 +116,7 @@ func (w *WeChatController) ServerWechat() {
 	// 传入request和responseWriter
 	server := officialAccount.GetServer(req, writer)
 
-	// 跳过接口验证
+	// 跳过接口验证TOKEN
 	server.SkipValidate(true)
 
 	// 设置接收消息的处理方法

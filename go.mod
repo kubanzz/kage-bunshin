@@ -4,7 +4,11 @@ go 1.20
 
 require github.com/beego/beego/v2 v2.0.7
 
-require github.com/smartystreets/goconvey v1.6.4
+require (
+	github.com/robfig/cron v1.2.0
+	github.com/silenceper/wechat/v2 v2.1.4
+	github.com/smartystreets/goconvey v1.6.4
+)
 
 require (
 	github.com/bradfitz/gomemcache v0.0.0-20220106215444-fb4bf637b56d // indirect
@@ -17,9 +21,7 @@ require (
 	github.com/klauspost/compress v1.13.6 // indirect
 	github.com/montanaflynn/stats v0.0.0-20171201202039-1bf9dbcd8cbe // indirect
 	github.com/niemeyer/pretty v0.0.0-20200227124842-a10e7caefd8e // indirect
-	github.com/robfig/cron v1.2.0 // indirect
 	github.com/robfig/cron/v3 v3.0.1 // indirect
-	github.com/silenceper/wechat/v2 v2.1.4 // indirect
 	github.com/sirupsen/logrus v1.9.0 // indirect
 	github.com/smartystreets/assertions v0.0.0-20180927180507-b2de0cb4f26d // indirect
 	github.com/spf13/cast v1.4.1 // indirect
