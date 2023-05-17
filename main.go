@@ -16,7 +16,7 @@ func main() {
 	SubscribeChannel(done)
 
 	// 启动定时任务
-	// StartSchedule(done)
+	StartSchedule(done)
 
 	beego.Run()
 }

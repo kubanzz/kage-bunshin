@@ -21,10 +21,16 @@ func StartSchedule(done chan struct{}) {
 func startHolidaySchedule() {
 	c := cron.New()
 
-	err := c.AddFunc("*/5 * * * * ?", func() {
+	err := c.AddFunc("0 16 11 * * ?", func() {
 		logs.Info("开始定时任务 - [获取最近七天节假日]")
 		holidayCollector := HolidayHB{}
 		holidayList := holidayCollector.GetLast7Holiday()
+
+		if len(holidayList) == 0 {
+			logs.Info("最近七天内无节假日")
+			return
+		}
+
 		bytes, err := json.Marshal(holidayList)
 		if err != nil {
 			logs.Error("Error：", err)
