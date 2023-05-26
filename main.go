@@ -22,7 +22,7 @@ func main() {
 }
 
 func SubscribeChannel(done chan struct{}) {
-	// 订阅假期主题
+	// 启动订阅监听任务
 	go mq.SubscribeChannel(done)
 }
 

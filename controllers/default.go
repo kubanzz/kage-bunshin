@@ -70,3 +70,22 @@ func (u *CollectorController) HolidayCollect_HB() {
 
 	u.Ctx.WriteString(holidayStr)
 }
+
+func (u *CollectorController) WeatherCollect_HF() {
+	key := "841e2ad14aac42259cc6eb630965f848"
+	// 香洲区
+	location := 101280704
+
+	weatherCollector := collector.Weather{}
+	weatherPre := weatherCollector.CollectWeatherPrediction(location, key)
+	bytes, err := json.Marshal(weatherPre)
+	if err != nil {
+		logs.Error("Error：", err)
+		return
+	}
+
+	weatherPreStr := string(bytes)
+	// db.RedisClient.Publish(context.Background(), "weather_channel", weatherPreStr)
+
+	u.Ctx.WriteString(weatherPreStr)
+}

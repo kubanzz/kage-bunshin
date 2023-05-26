@@ -80,7 +80,7 @@ func (h *HolidayTM) Collect(year string) string {
 		return ""
 	}
 
-	logs.Info(" 获取[{}]年的假期" + year)
+	logs.Info(" 获取[%s]年的假期", year)
 	mongoClient := db.MongoDB
 
 	// 先查数据库，不存在则http请求API获取
@@ -268,7 +268,30 @@ func (h *HolidayHB) GetLast7Holiday() []Holiday {
 
 	holidayList := []Holiday{}
 	for i := 0; i < 7; i++ {
-		date := currentTime.AddDate(0, 0, -i)
+		date := currentTime.AddDate(0, 0, i)
+		formateDate := date.Format("2006-01-02")
+		if targetHoliday, ok := jsonMap[formateDate]; ok {
+			holidayList = append(holidayList, targetHoliday)
+		}
+	}
+
+	return holidayList
+}
+
+func (h *HolidayHB) GetLastNHoliday(days int) []Holiday {
+	// 获取当前时间
+	currentTime := time.Now()
+	year := currentTime.Year()
+
+	holidaysJson := h.Collect(strconv.Itoa(year))
+	// logs.Info("holidaysJson ========== " + holidaysJson)
+
+	jsonMap := make(map[string]Holiday)
+	json.Unmarshal([]byte(holidaysJson), &jsonMap)
+
+	holidayList := []Holiday{}
+	for i := 0; i < days; i++ {
+		date := currentTime.AddDate(0, 0, i)
 		formateDate := date.Format("2006-01-02")
 		if targetHoliday, ok := jsonMap[formateDate]; ok {
 			holidayList = append(holidayList, targetHoliday)

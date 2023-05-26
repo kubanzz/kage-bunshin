@@ -11,4 +11,5 @@ func init() {
 	beego.Router("/", &controllers.WeChatController{}, "*:ServerWechat")
 	beego.AutoRouter(&controllers.WeChatController{})
 	beego.AutoRouter(&controllers.CollectorController{})
+	beego.AutoRouter(&controllers.NotificationController{})
 }
